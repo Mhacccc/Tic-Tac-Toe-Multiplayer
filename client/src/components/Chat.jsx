@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Chat.css";
 
 function Chat({ socket, playerRole }) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const messagesContainerRef = useRef(null);
 
   useEffect(() => {
     const onNewMessage = (newMessage) => {
@@ -16,6 +17,12 @@ function Chat({ socket, playerRole }) {
       socket.off("new_message", onNewMessage);
     };
   }, [socket]);
+
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
@@ -32,7 +39,7 @@ function Chat({ socket, playerRole }) {
 
   return (
     <div className="chat-container">
-      <div className="messages">
+      <div className="messages" ref={messagesContainerRef}>
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.sender === playerRole ? "own-message" : ""}`}>
             <span className="sender">{msg.sender === playerRole ? "You" : `Opponent (${msg.sender})`}</span>
