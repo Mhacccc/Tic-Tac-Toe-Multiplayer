@@ -1,21 +1,106 @@
-.board{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    justify-items: center;
-    width: 309px;
-    gap: 1px;
-
+:root {
+  --bg-color: #121212;
+  --board-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+  --accent-x: #ff4d4d;
+  --accent-o: #4d79ff;
+  --square-bg: #2a2a2a;
+  --square-hover: #333333;
+  --winning-bg: #2c3e50;
 }
 
-.square{
-    width: 100px;
-    height: 100px;
-    border: solid 0.2px;
-    cursor: pointer;
-    font-size: xx-large;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin: 0 0 1rem 0;
+  letter-spacing: 2px;
+}
+
+.status-bar {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.role-badge {
+  font-size: 0.9rem;
+  background: var(--board-bg);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.role-badge span {
+  font-weight: bold;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 8px;
+  background-color: var(--bg-color);
+}
+
+.square {
+  background-color: var(--square-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  border-radius: 8px;
+}
+
+.square:hover {
+  background-color: var(--square-hover);
+}
+
+.square.x { color: var(--accent-x); }
+.square.o { color: var(--accent-o); }
+
+.square.winning {
+  background-color: var(--winning-bg);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.reset-btn {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s;
+  margin-top: 1rem;
+}
+
+.reset-btn:hover {
+  opacity: 0.9;
 }
