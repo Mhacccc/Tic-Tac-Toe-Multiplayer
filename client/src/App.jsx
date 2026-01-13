@@ -3,7 +3,7 @@ import "./App.css";
 import Square from "./components/Square";
 import {io} from "socket.io-client"
 
-const socket = io.connect("http://localhost:4000")
+const socket = io.connect(import.meta.env.VITE_SERVER_URL || "http://localhost:4000")
 
 function calculateWinner(squares) {
   const lines = [
