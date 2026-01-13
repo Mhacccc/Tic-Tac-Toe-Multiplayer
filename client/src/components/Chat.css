@@ -1,0 +1,112 @@
+/*
+ * A minimalist, dark-themed chat UI that matches the application's aesthetic.
+ */
+
+/* Use root variables from App.css for consistency */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 316px; /* Match board width (100px * 3 + 8px * 2) */
+    height: 200px; /* A more compact height */
+    background-color: var(--board-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+}
+
+.messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Scrollbar styling for a more modern look */
+.messages::-webkit-scrollbar {
+    width: 6px;
+}
+.messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+.messages::-webkit-scrollbar-thumb {
+    background: #4f4f4f;
+    border-radius: 3px;
+}
+.messages::-webkit-scrollbar-thumb:hover {
+    background: #6f6f6f;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 85%;
+    word-wrap: break-word;
+    line-height: 1.4;
+    transition: all 0.2s ease-in-out;
+}
+
+.message.own-message {
+    background-color: var(--accent-o); /* Using 'O' color for self */
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+.message:not(.own-message) {
+    background-color: var(--square-bg);
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+}
+
+.sender {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    opacity: 0.7;
+}
+
+.message-form {
+    display: flex;
+    padding: 15px;
+    background-color: var(--square-bg);
+}
+
+.message-form input {
+    flex-grow: 1;
+    border: none;
+    background-color: var(--board-bg);
+    color: var(--text-color);
+    border-radius: 20px;
+    padding: 10px 15px;
+    margin-right: 10px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+.message-form input:focus {
+    background-color: var(--bg-color);
+}
+
+.message-form button {
+    border: none;
+    background-color: var(--accent-o);
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.message-form button:hover {
+    background-color: #4d79ffb3; /* Lighter accent color for hover */
+}

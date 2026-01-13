@@ -55,6 +55,12 @@ io.on("connection",(socket)=>{
             socket.to(socket.roomId).emit("opponent_left");
         }
     });
+
+    socket.on("chat_message", (message) => {
+        if (socket.roomId) {
+            socket.to(socket.roomId).emit("new_message", message);
+        }
+    });
 })
 
 server.listen(PORT,()=>{

@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import "./App.css";
 import Square from "./components/Square";
+import Chat from "./components/Chat"; // Import Chat component
 import {io} from "socket.io-client"
 
 const socket = io.connect(import.meta.env.VITE_SERVER_URL || "http://localhost:4000")
@@ -123,17 +124,20 @@ function App() {
         {gameState === "playing" && playerRole && <div className="role-badge">You are: <span>{playerRole}</span></div>}
       </div>
       
-      <div className="board">
-        {squares.map((value, index) => {
-          return (
-            <Square
-              key={index}
-              value={value}
-              isWinning={winningLine.includes(index)}
-              onSquareClick={() => handleClick(index)}
-            />
-          );
-        })}
+      <div className="game-container">
+        <div className="board">
+          {squares.map((value, index) => {
+            return (
+              <Square
+                key={index}
+                value={value}
+                isWinning={winningLine.includes(index)}
+                onSquareClick={() => handleClick(index)}
+              />
+            );
+          })}
+        </div>
+        {gameState === "playing" && <Chat socket={socket} playerRole={playerRole} />}
       </div>
 
       {(gameState === "idle" || gameState === "opponent_left") && (

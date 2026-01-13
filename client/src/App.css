@@ -104,3 +104,10 @@ h1 {
 .reset-btn:hover {
   opacity: 0.9;
 }
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
